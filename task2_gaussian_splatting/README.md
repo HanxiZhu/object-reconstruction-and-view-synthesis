@@ -100,7 +100,40 @@ Method: ours_30000
 
 评估结果也会保存为 `.json` 文件，便于后续分析。
 
-## 7. 项目结构示意
+## 7. 模型可视化
+
+训练完成后，你可以使用官方提供的可视化工具直观查看模型效果。
+
+当前模型文件夹结构如下：
+
+```
+data/
+ ┣ images/
+ ┣ sparse/
+ ┣ output/
+    ┣ cameras.json
+    ┣ cfg_args
+    ┣ input.ply
+    ┣ point_cloud/
+       ┣ iteration_7000/point_cloud.ply
+       ┣ iteration_30000/point_cloud.ply
+```
+
+在 Windows 系统中，可访问以下链接下载可视化工具：
+
+[https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/binaries/viewers.zip](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/binaries/viewers.zip)
+
+将压缩包解压到项目根目录下。
+
+在资源管理器地址栏中输入 `cmd` 打开命令行，运行以下命令：
+
+```bash
+.\viewers\bin\SIBR_gaussianViewer_app -m data/output
+```
+
+你将看到训练后的 3D Gaussian 模型渲染效果。建议将操作模式切换为 `trackball`，以获得更顺畅的交互体验。
+
+## 8. 项目结构示意
 
 ```
 task2_gaussian_splatting/
@@ -118,7 +151,7 @@ task2_gaussian_splatting/
         └── results.json    # 指标评估结果
 ```
 
-## 8. 方法简介
+## 9. 方法简介
 
 3D Gaussian Splatting 用各向异性的高斯分布替代体素表示，结合 GPU 加速光栅化实现高效渲染。
 
@@ -127,7 +160,7 @@ task2_gaussian_splatting/
 - 相比 NeRF，该方法训练更快、渲染更清晰，并无需网格重建；
 - 该方法发表于 SIGGRAPH 2023，并被评为最佳论文之一。
 
-## 9. 快速使用指南
+## 10. 快速使用指南
 
 ```bash
 git clone https://github.com/yourname/your-repo-name.git
@@ -146,8 +179,9 @@ python render.py --model output/gaussian_model --iters 30000 --traj circular
 python metrics.py --model output/gaussian_model
 ```
 
-## 10. 参考资料
+## 11. 参考资料
 
 - 官方实现仓库：https://github.com/graphdeco-inria/gaussian-splatting
 - SIGGRAPH 2023 论文："3D Gaussian Splatting for Real-Time Radiance Field Rendering"
+
 
